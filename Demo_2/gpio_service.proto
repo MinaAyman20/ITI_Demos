@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+service GPIOService {
+    rpc ReadState(ReadStateRequest) returns (ReadStateResponse) {}
+    rpc SetOutput(SetOutputRequest) returns (SetOutputResponse) {}
+    rpc ConfigurePin(ConfigurePinRequest) returns (ConfigurePinResponse) {}
+}
+
+message ReadStateRequest {
+    int32 pin = 1;
+}
+
+message ReadStateResponse {
+    bool response = 1;
+}
+
+message SetOutputRequest {
+    int32 pin = 1;
+    bool state = 2;
+}
+
+message SetOutputResponse {
+    bool response = 1;
+}
+
+message ConfigurePinRequest {
+    int32 pin = 1;
+    enum PinMode {
+        INPUT = 0;
+        OUTPUT = 1;
+    }
+    PinMode mode = 2;
+}
+
+message ConfigurePinResponse {
+    bool response = 1;
+}
+
